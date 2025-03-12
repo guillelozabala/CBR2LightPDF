@@ -14,6 +14,7 @@ from PIL import Image
 import argparse
 import shutil
 
+
 def extract_images_from_archive(archive_path, temp_dir):
     """Extracts images from a .cbz or .cbr file to a temporary directory using patool"""
     try:
@@ -25,6 +26,7 @@ def extract_images_from_archive(archive_path, temp_dir):
         [os.path.join(temp_dir, f) for f in os.listdir(temp_dir) if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
     )
     return images
+
 
 def create_pdf(images, output_pdf, max_size, quality, grayscale):
     """Converts extracted images to a compressed PDF file"""
@@ -62,6 +64,7 @@ def create_pdf(images, output_pdf, max_size, quality, grayscale):
     pdf_document.save(output_pdf)
     pdf_document.close()
 
+
 def convert_cbr_cbz_to_pdf(input_file, output_file, max_size, quality, grayscale):
     """Main function that handles conversion"""
     temp_dir = tempfile.mkdtemp()
@@ -72,6 +75,7 @@ def convert_cbr_cbz_to_pdf(input_file, output_file, max_size, quality, grayscale
     finally:
         # Cleanup temporary files
         shutil.rmtree(temp_dir)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Convert .cbr or .cbz to a compressed .pdf")
